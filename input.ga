@@ -1,0 +1,60 @@
+{
+  "_productions": [
+    {
+      "_prodRhs": [
+        {
+          "Right": {
+            "tag": "Terminal",
+            "_terminalName": "a"
+          }
+        },
+        {
+          "Left": {
+            "_nonterminalName": "A"
+          }
+        }
+      ],
+      "_prodLhs": {
+        "_nonterminalName": "A"
+      }
+    },
+    {
+      "_prodRhs": [
+        {
+          "Right": {
+            "tag": "Epsilon"
+          }
+        }
+      ],
+      "_prodLhs": {
+        "_nonterminalName": "A"
+      }
+    }
+  ],
+  "_nonterminals": [
+    {
+      "_nonterminalName": "A"
+    },
+    [
+      {
+        "_nonterminalName": "B"
+      },
+      {
+        "_nonterminalName": "C"
+      }
+    ]
+  ],
+  "_terminals": [
+    {
+      "tag": "Epsilon"
+    },
+    {
+      "tag": "Terminal",
+      "_terminalName": "a"
+    },
+    {
+      "tag": "Terminal",
+      "_terminalName": "b"
+    }
+  ]
+}

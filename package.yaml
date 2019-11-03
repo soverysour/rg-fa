@@ -1,0 +1,52 @@
+name:                rg-fa
+version:             0.1.0.0
+github:              "soverysour/rg-fa"
+license:             BSD3
+author:              "soverysour"
+maintainer:          "sebi.f@tuta.io"
+copyright:           "BSD3"
+
+extra-source-files:
+- README.md
+
+default-extensions:
+  - NoImplicitPrelude
+  - OverloadedStrings
+
+ghc-options:
+  - -Weverything
+  - -Werror
+  - -Wno-safe
+  - -Wno-unsafe
+  - -Wno-missing-import-lists
+  - -Wno-missed-specialisations
+  - -Wno-all-missed-specialisations
+  - -Wno-missing-local-signatures
+  - -Wno-monomorphism-restriction
+
+synopsis:            Regular grammars & finite automata uni homework.
+category:            homework
+
+description:         Please see the README on GitHub at <https://github.com/soverysour/rg-fa#readme>
+
+dependencies:
+- base >= 4.7 && < 5
+- classy-prelude
+- aeson
+- bytestring
+- text
+- pretty-simple
+
+library:
+  source-dirs: src
+
+executables:
+  rg-fa-exe:
+    main:                Main.hs
+    source-dirs:         app
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    dependencies:
+    - rg-fa
