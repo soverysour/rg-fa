@@ -22,6 +22,37 @@
       "_prodRhs": [
         {
           "Right": {
+            "tag": "Terminal",
+            "_terminalName": "b"
+          }
+        }
+      ],
+      "_prodLhs": {
+        "_nonterminalName": "A"
+      }
+    },
+    {
+      "_prodRhs": [
+        {
+          "Right": {
+            "tag": "Terminal",
+            "_terminalName": "b"
+          }
+        },
+        {
+          "Left": {
+            "_nonterminalName": "A"
+          }
+        }
+      ],
+      "_prodLhs": {
+        "_nonterminalName": "B"
+      }
+    },
+    {
+      "_prodRhs": [
+        {
+          "Right": {
             "tag": "Epsilon"
           }
         }
@@ -38,9 +69,6 @@
     [
       {
         "_nonterminalName": "B"
-      },
-      {
-        "_nonterminalName": "C"
       }
     ]
   ],

@@ -69,7 +69,14 @@ menuFa fa = do
     "2" -> putStrLn $ Fa.alphabet fa
     "3" -> putStrLn $ Fa.transitions fa
     "4" -> putStrLn $ Fa.statesFinal fa
-    "5" -> pPrint $ Transform.faToGa fa
+    "5" -> do
+      let ga = Transform.faToGa fa
+      putStrLn $ Ga.nonTerminals ga
+      putStrLn ""
+      putStrLn $ Ga.terminals ga
+      putStrLn ""
+      putStrLn $ Ga.productions ga
+      putStrLn ""
     "0" -> fail "Program finished."
     _   -> fail "Not a valid option."
 

@@ -49,14 +49,15 @@ termToState (Fa.State accepting name) =
         then (nonterm, Just $ Ga.Production nonterm [Right Ga.Epsilon])
         else (nonterm, Nothing)
 
-transitionToProduction :: Fa.Transition -> Ga.Production
-transitionToProduction (from, through, to) =
+transitionToProduction :: (Text -> Bool) -> Fa.Transition -> [Ga.Production]
+transitionToProduction isTerminal (from, through, to) =
   let nonterm = Ga.NonTerminal from
-   in if to == terminalName
-        then Ga.Production nonterm [Right (Ga.Terminal through)]
-        else Ga.Production
+      production = Ga.Production
                nonterm
                [Right (Ga.Terminal through), Left (Ga.NonTerminal to)]
+   in if isTerminal to
+        then [Ga.Production nonterm [Right (Ga.Terminal through)], production]
+        else [production]
 
 faToGa :: Fa.Structure -> Ga.Structure
 faToGa (Fa.Structure (start, states) alphabet transitions) =
@@ -65,8 +66,9 @@ faToGa (Fa.Structure (start, states) alphabet transitions) =
     nonterms = Ga.NonTerminal <$> filter (/= terminalName) (Fa._name <$> states)
     (start', maybeEpsilonProduction) = termToState start
     terms = Ga.Terminal <$> alphabet
-    prods = transitionToProduction <$> transitions
+    isTerminal x = foldr (||) False $ fmap (\y -> if x == Fa._name y then Fa._accepting y else False) states
+    prods = transitionToProduction isTerminal <$> transitions
     prods' =
       case maybeEpsilonProduction of
-        Nothing -> prods
-        Just p  -> p : prods
+        Nothing -> mconcat prods
+        Just p  -> p : mconcat prods
